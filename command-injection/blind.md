@@ -1,70 +1,70 @@
-# Análisis de Command Injection en DVWA
+# Command Injection Analysis in DVWA
 
-## Objetivo
+## Objective
 
-Analizar cómo varía la vulnerabilidad de inyección de comandos según el nivel de seguridad en DVWA.
-
----
-
-## Nivel Low
-
-* No existe validación de entrada
-* El input del usuario se concatena directamente en un comando del sistema
-
-Resultado:
-Permite la ejecución completa de comandos arbitrarios en el servidor.
+Analyze how the command injection vulnerability varies according to the security level in DVWA.
 
 ---
 
-## Nivel Medium
+## Low Level
 
-* Se implementa un filtro tipo blacklist
-* Se bloquean algunos caracteres especiales
+* No input validation
+* User input is directly concatenated into a system command
 
-Debilidad:
-El filtro es incompleto y puede ser evadido utilizando diferentes operadores o variaciones del input.
-
----
-
-## Nivel High
-
-* Se aplican validaciones más estrictas
-* Uso de funciones de sanitización del sistema
-
-Observación:
-Reduce significativamente el riesgo, pero no garantiza una protección total si la validación no es correcta.
+Result:
+Allows the complete execution of arbitrary commands on the server.
 
 ---
 
-## Ejemplo de inyección
+## Medium Level
 
-Input enviado:
+* A blacklist filter is implemented
+* Some special characters are blocked
+
+Weakness:
+The filter is incomplete and can be bypassed using different operators or variations of the input.
+
+---
+
+## High Level
+
+* Stricter validations are applied
+* Use of system sanitization functions
+
+Observation:
+Significantly reduces the risk, but does not guarantee complete protection if the validation is not correct.
+
+---
+
+## Injection Example
+
+Input sent:
 127.0.0.1 | whoami
 
-Resultado:
-El sistema ejecuta un comando adicional debido a la interpretación de operadores por la shell.
+Result:
+The system executes an additional command due to the shell's interpretation of operators.
 
 ---
 
-## Análisis técnico
+## Technical Analysis
 
-La vulnerabilidad ocurre porque el backend ejecuta directamente el input del usuario en la shell del sistema sin una validación adecuada.
+The vulnerability occurs because the backend directly executes user input in the system shell without proper validation.
 
-Esto permite que operadores como `|`, `;`, `&&` y `||` sean interpretados como comandos.
-
----
-
-## Conclusión
-
-Los mecanismos de seguridad basados únicamente en blacklist no son suficientes.
-
-El problema principal es la ejecución directa de input controlado por el usuario en el sistema.
+This allows operators such as `|`, `;`, `&&`, and `||` to be interpreted as commands.
 
 ---
 
-## Aprendizaje
+## Conclusion
 
-* Comprender cómo funciona el backend es fundamental
-* La lógica de ejecución es más importante que los payloads
-* Los filtros mal implementados pueden ser evadidos
+Security mechanisms based solely on blacklists are insufficient.
+
+The main problem is the direct execution of user-controlled input in the system.
+
+---
+
+## Lessons Learned
+
+* Understanding how the backend works is fundamental.
+* Execution logic is more important than payloads.
+* Poorly implemented filters can be bypassed.
 
