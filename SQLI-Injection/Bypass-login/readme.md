@@ -12,7 +12,8 @@ Proceso de análisis
 1. Identificación del formulario de login
 
 Se analizó el formulario de autenticación y los parámetros enviados al servidor.
-<img width="1366" height="768" alt="Captura de pantalla (274)" src="https://github.com/user-attachments/assets/1bd7b11f-0d1a-4695-a0e0-939b2048d85b" />
+<img width="1366" height="768" alt="Captura de pantalla (272)" src="https://github.com/user-attachments/assets/ffe11107-479c-4c55-bf3e-d4d75afaca77" />
+
 
 2. Interceptación de la petición
 
